@@ -120,7 +120,7 @@ function keycharm(preventDefault) {
     delete _bound[type][_keys[key].code][modifier];
   };
 
-  this.clear = function() {
+  this.reset = function() {
     _bound = {keydown:{}, keyup:{}, keypress:{}};
   };
 

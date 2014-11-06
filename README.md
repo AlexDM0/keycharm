@@ -24,7 +24,7 @@ Available methods:
 ```
 .bind(key, function, 'keydown' or 'keyup'); // bind key 
 .unbind(key, 'keydown' or 'keyup');         // unbind key
-.clear();                                   // remove all bound keys
+.reset();                                   // remove all bound keys
 .destroy();                                 // remove all bound keys and the event listeners of keycharm
 .getKey(event);                             // get the key label of the event
 .bindAll(function, 'keydown' or 'keyup');   // bind all keys to this function, could be used for testing or demos.
