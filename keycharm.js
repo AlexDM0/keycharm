@@ -3,7 +3,11 @@
  */
 
 function keycharm(preventDefault) {
-  var _bound = {keydown:{}, keyup:{}, keypress:{}};
+  if (preventDefault === undefined) {
+    preventDefault = false;
+  }
+
+  var _bound = {keydown:{}, keyup:{}};
   var _keys = {};
   var i;
 
@@ -32,7 +36,7 @@ function keycharm(preventDefault) {
   // extra keys
   _keys['space'] = {code:32, shift: false};
   _keys['enter'] = {code:13, shift: false};
-  _keys['shift'] = {code:16, shift: false};
+  _keys['shift'] = {code:16, shift: undefined};
   _keys['esc']   = {code:27, shift: false};
   _keys['backspace'] = {code:8, shift: false};
   _keys['tab']       = {code:9, shift: false};
@@ -51,25 +55,30 @@ function keycharm(preventDefault) {
 
   var down = function(event) {handleEvent(event,'keydown');};
   var up = function(event) {handleEvent(event,'keyup');};
-  //var press = function(event) {handleEvent(event,'keypress');};
 
+  // handle the actualy bound key with the event
   var handleEvent = function(event,type) {
     if (_bound[type][event.keyCode] !== undefined) {
-      if (event.shiftKey == true && _bound[type][event.keyCode]['shift'] !== undefined) {
-        _bound[type][event.keyCode]['shift'](event);
+      var bound = _bound[type][event.keyCode];
+      for (var i = 0; i < bound.length; i++) {
+        if (bound[i].shift === undefined) {
+          bound[i].fn(event);
+        }
+        else if (bound[i].shift == true && event.shiftKey == true) {
+          bound[i].fn(event);
+        }
+        else if (bound[i].shift == false && event.shiftKey == false) {
+          bound[i].fn(event);
+        }
       }
-      else if (event.keyCode == _keys['shift'].code) {
-        _bound[type][event.keyCode][''](event);
-      }
-      else {
-        _bound[type][event.keyCode][''](event);
-      }
+
       if (preventDefault == true) {
         event.preventDefault();
       }
     }
   };
 
+  // bind a key to a callback
   this.bind = function(key, callback, type) {
     if (type === undefined) {
       type = 'keydown';
@@ -78,12 +87,13 @@ function keycharm(preventDefault) {
       throw new Error("unsupported key: " + key);
     }
     if (_bound[type][_keys[key].code] === undefined) {
-      _bound[type][_keys[key].code] = {};
+      _bound[type][_keys[key].code] = [];
     }
-    var modifier = _keys[key].shift == true ? 'shift' : '';
-    _bound[type][_keys[key].code][modifier] = callback;
+    _bound[type][_keys[key].code].push({fn:callback, shift:_keys[key].shift});
   };
 
+
+  // bind all keys to a call back (demo purposes)
   this.bindAll = function(callback, type) {
     if (type === undefined) {
       type = 'keydown';
@@ -95,6 +105,7 @@ function keycharm(preventDefault) {
     }
   }
 
+  // get the key label from an event
   this.getKey = function(event) {
     for (key in _keys) {
       if (_keys.hasOwnProperty(key)) {
@@ -109,34 +120,49 @@ function keycharm(preventDefault) {
         }
       }
     }
+    return "unknown key, currently not supported";
   };
 
-  this.unbind = function(key, type) {
+  // unbind either a specific callback from a key or all of them (by leaving callback undefined)
+  this.unbind = function(key, callback, type) {
     if (type === undefined) {
       type = 'keydown';
     }
     if (_keys[key] === undefined) {
       throw new Error("unsupported key: " + key);
     }
-    var modifier = _keys[key].shift == true ? 'shift' : '';
-    delete _bound[type][_keys[key].code][modifier];
+    if (callback !== undefined) {
+      var newBindings = [];
+      var bound = _bound[type][_keys[key].code]
+      for (var i = 0; i < bound.length; i++) {
+        if (!(bound[i].fn == callback && bound[i].shift == _keys[key].shift)) {
+          newBindings.push(_bound[type][_keys[key].code][i]);
+        }
+      }
+      _bound[type][_keys[key].code] = newBindings;
+    }
+    else {
+      _bound[type][_keys[key].code] = [];
+    }
   };
 
+  // reset all bound variables.
   this.reset = function() {
-    _bound = {keydown:{}, keyup:{}, keypress:{}};
+    _bound = {keydown:{}, keyup:{}};
   };
 
+  // unbind all listeners and reset all variables.
   this.destroy = function() {
-    _bound = {keydown:{}, keyup:{}, keypress:{}};
+    _bound = {keydown:{}, keyup:{}};
     window.removeEventListener('keydown', down, true);
     window.removeEventListener('keyup', up, true);
-    //window.removeEventListener('keypress', press, true);
   };
 
+  // create listeners.
   window.addEventListener('keydown',down,true);
   window.addEventListener('keyup',up,true);
-  //window.addEventListener('keypress',press,true);
 
+  // return the public functions.
   return this;
 }
 

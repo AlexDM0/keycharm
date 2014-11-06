@@ -26,8 +26,8 @@ Each initiation of keycharm has its own bindings to the key events.
 Available methods:
 
 ```
-.bind(key, function, 'keydown' or 'keyup'); // bind key 
-.unbind(key, 'keydown' or 'keyup');         // unbind key
+.bind(key, callback, [type]);               // bind key, type = 'keydown' or 'keyup', default type = keydown.
+.unbind(key, [callback], [type]);           // unbind key,  type = 'keydown' or 'keyup', default type = keydown. No callback deletes all bound callbacks from key
 .reset();                                   // remove all bound keys
 .destroy();                                 // remove all bound keys and the event listeners of keycharm
 .getKey(event);                             // get the key label of the event
