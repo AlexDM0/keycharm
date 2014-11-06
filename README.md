@@ -12,10 +12,16 @@ npm install keycharm
 Example:
 
 ```
-var keys = keycharm(preventDefault); // prevent default called after function execution true or false.
+var keys = keycharm(options);
 
 keys.bind("a", function () {}, 'keydown'); // key, callback function, 'keydown' or 'keyup'
 ```
+
+Available options (all are optional):
+```
+{
+    preventDefault: true/false // default value: false;
+}
 
 Supported keys:
 ```

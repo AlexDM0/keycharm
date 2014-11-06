@@ -26,7 +26,7 @@
 </table>
 
 <script language="JavaScript">
-    var keys = keycharm();
+    var keys = keycharm({preventDefault: false});
 
     keys.bindAll(function(event) {
         document.getElementById('keydown').innerHTML = "Key:" + keys.getKey(event);

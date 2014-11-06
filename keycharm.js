@@ -4,10 +4,8 @@
 
 module.exports = keycharm;
 
-function keycharm(preventDefault) {
-  if (preventDefault === undefined) {
-    preventDefault = false;
-  }
+function keycharm(options) {
+  var preventDefault = options && options.preventDefault || false;
 
   var _bound = {keydown:{}, keyup:{}};
   var _keys = {};
