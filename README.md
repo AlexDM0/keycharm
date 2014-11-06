@@ -3,6 +3,11 @@ keycharm
 
 Easy and free library for binding keys.
 
+Keycharm is on npm so you can install it with:
+```
+npm install keycharm
+```
+
 
 Example:
 
