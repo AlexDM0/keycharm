@@ -2,7 +2,7 @@
  * Created by Alex on 11/6/2014.
  */
 
-function keycharm() {
+function keycharm(preventDefault) {
   var _bound = {keydown:{}, keyup:{}, keypress:{}};
   var _keys = {};
   var i;
@@ -61,6 +61,9 @@ function keycharm() {
       }
       else {
         _bound[type][event.keyCode][''](event);
+      }
+      if (preventDefault == true) {
+        event.preventDefault();
       }
     }
   };
