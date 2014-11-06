@@ -2,6 +2,8 @@
  * Created by Alex on 11/6/2014.
  */
 
+module.exports = keycharm;
+
 function keycharm(preventDefault) {
   if (preventDefault === undefined) {
     preventDefault = false;
@@ -165,5 +167,4 @@ function keycharm(preventDefault) {
   // return the public functions.
   return this;
 }
-
 
