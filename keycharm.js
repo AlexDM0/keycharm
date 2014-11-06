@@ -39,6 +39,8 @@ function keycharm(preventDefault) {
   _keys['ctrl']      = {code:17, shift: false};
   _keys['alt']       = {code:18, shift: false};
   _keys['delete']    = {code:46, shift: false};
+  _keys['pageup']    = {code:33, shift: false};
+  _keys['pagedown']  = {code:34, shift: false};
   // symbols
   _keys['=']     = {code:187, shift: false};
   _keys['-']     = {code:189, shift: false};
