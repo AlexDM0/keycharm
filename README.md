@@ -14,7 +14,7 @@ keys.bind("a", function () {}, 'keydown'); // key, callback function, 'keydown' 
 
 Supported keys:
 a-z, A-Z, 0-9, F1-F12, space, enter, ctrl, alt, tab, shift, 
-delete, esc, backspace, -,=, [, ], left, up, right, down, numpad: num0-num9, num/, num*, num-, num+, num.
+delete, esc, backspace, -,=, [, ], left, up, right, down, numpad: 'num0'-'num9', 'num/', 'num*', 'num-', 'num+', 'num.'
 
 
 Each initiation of keycharm has its own bindings to the key events.
