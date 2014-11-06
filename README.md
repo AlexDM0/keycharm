@@ -33,3 +33,5 @@ Available methods:
 .getKey(event);                             // get the key label of the event
 .bindAll(function, 'keydown' or 'keyup');   // bind all keys to this function, could be used for testing or demos.
 ```
+
+Keycharm is Dual-licensed with both the Apache 2.0 license as well as the MIT license. I'll leave it up to the user to pick which one they prefer.
