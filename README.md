@@ -28,9 +28,9 @@ Supported keys:
 
 ```
 'a'-'z', 'A'-'Z', '0'-'9', 'F1'-'F12', 'space', 'enter', 'ctrl', 'alt', 'tab', 'shift', 
-'delete', 'esc', 'backspace', '-','=', '\[', '\]', 'left', 'up', 'right', 'down', 'pageup', 'pagedown'
+'delete', 'esc', 'backspace', '-','=', '[', ']', 'left', 'up', 'right', 'down', 'pageup', 'pagedown'
 
-numpad: 'num0'-'num9', 'num/', 'num\*', 'num-', 'num+', 'num.'
+numpad: 'num0'-'num9', 'num/', 'num*', 'num-', 'num+', 'num.'
 ```
 
 Each initiation of keycharm has its own bindings to the key events.
