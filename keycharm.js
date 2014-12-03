@@ -118,7 +118,7 @@
           this.bind(key,callback,type);
         }
       }
-    }
+    };
 
     // get the key label from an event
     this.getKey = function(event) {
@@ -148,10 +148,12 @@
       }
       if (callback !== undefined) {
         var newBindings = [];
-        var bound = _bound[type][_keys[key].code]
-        for (var i = 0; i < bound.length; i++) {
-          if (!(bound[i].fn == callback && bound[i].shift == _keys[key].shift)) {
-            newBindings.push(_bound[type][_keys[key].code][i]);
+        var bound = _bound[type][_keys[key].code];
+        if (bound !== undefined) {
+          for (var i = 0; i < bound.length; i++) {
+            if (!(bound[i].fn == callback && bound[i].shift == _keys[key].shift)) {
+              newBindings.push(_bound[type][_keys[key].code][i]);
+            }
           }
         }
         _bound[type][_keys[key].code] = newBindings;
