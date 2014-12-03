@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by Alex on 11/6/2014.
  */
@@ -22,6 +23,7 @@
   function keycharm(options) {
     var preventDefault = options && options.preventDefault || false;
 
+    var _exportFunctions = {};
     var _bound = {keydown:{}, keyup:{}};
     var _keys = {};
     var i;
@@ -94,7 +96,7 @@
     };
 
     // bind a key to a callback
-    this.bind = function(key, callback, type) {
+    _exportFunctions.bind = function(key, callback, type) {
       if (type === undefined) {
         type = 'keydown';
       }
@@ -109,20 +111,20 @@
 
 
     // bind all keys to a call back (demo purposes)
-    this.bindAll = function(callback, type) {
+    _exportFunctions.bindAll = function(callback, type) {
       if (type === undefined) {
         type = 'keydown';
       }
-      for (key in _keys) {
+      for (var key in _keys) {
         if (_keys.hasOwnProperty(key)) {
-          this.bind(key,callback,type);
+          _exportFunctions.bind(key,callback,type);
         }
       }
     };
 
     // get the key label from an event
-    this.getKey = function(event) {
-      for (key in _keys) {
+    _exportFunctions.getKey = function(event) {
+      for (var key in _keys) {
         if (_keys.hasOwnProperty(key)) {
           if (event.shiftKey == true && _keys[key].shift == true && event.keyCode == _keys[key].code) {
             return key;
@@ -139,7 +141,7 @@
     };
 
     // unbind either a specific callback from a key or all of them (by leaving callback undefined)
-    this.unbind = function(key, callback, type) {
+    _exportFunctions.unbind = function(key, callback, type) {
       if (type === undefined) {
         type = 'keydown';
       }
@@ -164,12 +166,12 @@
     };
 
     // reset all bound variables.
-    this.reset = function() {
+    _exportFunctions.reset = function() {
       _bound = {keydown:{}, keyup:{}};
     };
 
     // unbind all listeners and reset all variables.
-    this.destroy = function() {
+    _exportFunctions.destroy = function() {
       _bound = {keydown:{}, keyup:{}};
       window.removeEventListener('keydown', down, true);
       window.removeEventListener('keyup', up, true);
@@ -180,7 +182,7 @@
     window.addEventListener('keyup',up,true);
 
     // return the public functions.
-    return this;
+    return _exportFunctions;
   }
 
   return keycharm;
