@@ -11,11 +11,18 @@
             background-color:#eeeeee;
             vertical-align:middle;
         }
+
+        #container {
+            background-color:#dddddd;
+        }
     </style>
     <script src="../keycharm.js"></script>
 </head>
 <body>
+
+When using a DIV as a container, it NEEDS a tabindex.
 <h2>Press a button!</h2> <br>
+<div id="container" tabindex="1">
 <table>
     <tr height="30px">
         <td>Keydown event:</td><td><div id="keydown" class="keyfield">See the key here</div></td>
@@ -24,9 +31,10 @@
         <td>Keyup event:</td><td><div id="keyup" class="keyfield">See the key here</div></td>
     </tr>
 </table>
+</div>
 
 <script language="JavaScript">
-    var keys = keycharm({preventDefault: false});
+    var keys = keycharm({container:document.getElementById("container"),preventDefault: false});
 
     keys.bindAll(function(event) {
         document.getElementById('keydown').innerHTML = "Key:" + keys.getKey(event);

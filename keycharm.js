@@ -23,6 +23,8 @@
   function keycharm(options) {
     var preventDefault = options && options.preventDefault || false;
 
+    var container = options.container || window;
+
     var _exportFunctions = {};
     var _bound = {keydown:{}, keyup:{}};
     var _keys = {};
@@ -173,13 +175,13 @@
     // unbind all listeners and reset all variables.
     _exportFunctions.destroy = function() {
       _bound = {keydown:{}, keyup:{}};
-      window.removeEventListener('keydown', down, true);
-      window.removeEventListener('keyup', up, true);
+      container.removeEventListener('keydown', down, true);
+      container.removeEventListener('keyup', up, true);
     };
 
     // create listeners.
-    window.addEventListener('keydown',down,true);
-    window.addEventListener('keyup',up,true);
+    container.addEventListener('keydown',down,true);
+    container.addEventListener('keyup',up,true);
 
     // return the public functions.
     return _exportFunctions;

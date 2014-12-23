@@ -20,6 +20,7 @@ keys.bind("a", function () {}, 'keydown'); // key, callback function, 'keydown' 
 Available options (all are optional):
 ```
 {
+    container: document.getElementById("element"), // optional div to bind keycharm to. It will NEED a tabindex. When not supplied, this defaults to window.
     preventDefault: true/false // default value: false;
 }
 ```
