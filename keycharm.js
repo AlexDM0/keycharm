@@ -23,7 +23,7 @@
   function keycharm(options) {
     var preventDefault = options && options.preventDefault || false;
 
-    var container = options.container || window;
+    var container = options && options.container || window;
 
     var _exportFunctions = {};
     var _bound = {keydown:{}, keyup:{}};
