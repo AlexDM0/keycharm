@@ -47,4 +47,9 @@ Available methods:
 .bindAll(function, 'keydown' or 'keyup');   // bind all keys to this function, could be used for testing or demos.
 ```
 
+Common Pitfalls:
+
+You might feel tempted to use the keycharm library to bind keys to elements other than just form elements. Great, however, in this case you should be aware of the fact that besides giving focus to the element (e.g. programmatically `element.focus()`) you also need to add a tabindex! Simply focussing will *not* work.
+
+
 Keycharm is Dual-licensed with both the Apache 2.0 license as well as the MIT license. I'll leave it up to the user to pick which one they prefer.
