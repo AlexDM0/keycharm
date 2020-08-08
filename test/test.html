@@ -36,10 +36,10 @@ When using a DIV as a container, it NEEDS a tabindex. Select the DIV to start th
 <script language="JavaScript">
     var keys = keycharm({container:document.getElementById("container"),preventDefault: false});
 
-    keys.bindAll(function(event) {
+    keys.bind('all', function(event) {
         document.getElementById('keydown').innerHTML = "Key:" + keys.getKey(event);
     }, 'keydown');
-    keys.bindAll(function(event) {
+    keys.bind('all', function(event) {
         document.getElementById('keyup').innerHTML = "Key:" + keys.getKey(event);
     }, 'keyup');
 

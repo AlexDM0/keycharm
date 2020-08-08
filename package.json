@@ -4,6 +4,36 @@
   "description": "Simple, lightweight key-binding lib",
   "version": "0.3.0",
   "license": "(Apache-2.0 OR MIT)",
-  "main": "keycharm.js",
-  "repository": "https://github.com/AlexDM0/keycharm"
+  "main": "dist/keycharm.js",
+  "module": "dist/keycharm.mjs",
+  "typings": "dist/keycharm.d.ts",
+  "unpkg": "dist/keycharm.global.js",
+  "jsdelivr": "dist/keycharm.global.js",
+  "repository": "https://github.com/AlexDM0/keycharm",
+  "scripts": {
+    "build": "tsup src/keycharm.ts --format esm,cjs,iife --global-name keycharm --dts"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "tsup": "^3.4.2",
+    "typescript": "^3.9.7"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "key",
+    "keyboard",
+    "shortcut",
+    "binding",
+    "hotkey",
+    "typescript",
+    "web",
+    "dom",
+    "esm"
+  ],
+  "contributors": [
+    "aleclarson"
+  ]
 }
