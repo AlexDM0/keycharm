@@ -1,50 +1,91 @@
-keycharm
-========
+# keycharm
 
 Easy and free library for binding keys.
 
+## Install
+
 Keycharm is on npm so you can install it with:
-```
+
+```bash
 npm install keycharm
 ```
 
+## Import
 
-Example:
+### IIFE (browser)
 
+After importing the script `keycharm` is availible globally:
+
+```html
+<script src="https://unpkg.com/keycharm/keycharm.js">
 ```
-var keys = keycharm(options);
 
+### CommonJS
+
+```js
+const keycharm = require('keycharm');
+```
+
+### ESM
+
+```js
+import keycharm from 'keycharm';
+```
+
+## Usage
+
+```js
+var keys = keycharm(options);
 keys.bind("a", function () {}, 'keydown'); // key, callback function, 'keydown' or 'keyup'
 ```
 
-Available options (all are optional):
-```
+### Available options (all are optional)
+
+```js
 {
-    container: document.getElementById("element"), // optional div to bind keycharm to. It will NEED a tabindex. When not supplied, this defaults to window.
-    preventDefault: true/false // default value: false;
+    /* optional div to bind keycharm to.
+     * It will NEED a tabindex. When not supplied, this defaults to window. */
+    container: document.getElementById("element"),
+
+    /* swallow events (default: false) */
+    preventDefault: false
 }
 ```
 
-Supported keys:
+### Supported keys
 
-```
-'a'-'z', 'A'-'Z', '0'-'9', 'F1'-'F12', 'space', 'enter', 'ctrl', 'alt', 'tab', 'shift', 
-'delete', 'esc', 'backspace', '-','=', '[', ']', 'left', 'up', 'right', 'down', 'pageup', 'pagedown'
+```txt
+'a'-'z', 'A'-'Z', '0'-'9', 'space', 'enter', 'ctrl', 'alt', 'tab', 'shift', 'delete', 'backspace', '-', '=', '[', ']',
 
-numpad: 'num0'-'num9', 'num/', 'num*', 'num-', 'num+', 'num.'
+'esc', 'F1'-'F12', 'pageup', 'pagedown',
+
+'left', 'up', 'right', 'down',
+
+'num0'-'num9', 'num/', 'num*', 'num-', 'num+', 'num.'
 ```
 
 Each initiation of keycharm has its own bindings to the key events.
 
-Available methods:
+### Available methods
 
-```
-.bind(key, callback, [type]);               // bind key, type = 'keydown' or 'keyup', default type = keydown.
-.unbind(key, [callback], [type]);           // unbind key,  type = 'keydown' or 'keyup', default type = keydown. No callback deletes all bound callbacks from key
-.reset();                                   // remove all bound keys
-.destroy();                                 // remove all bound keys and the event listeners of keycharm
-.getKey(event);                             // get the key label of the event
-.bindAll(function, 'keydown' or 'keyup');   // bind all keys to this function, could be used for testing or demos.
+```js
+/* bind key, type = 'keydown' or 'keyup', default type = keydown. */
+.bind(key, callback, [type]);
+
+/* unbind key,  type = 'keydown' or 'keyup', default type = keydown. No callback deletes all bound callbacks from key */
+.unbind(key, [callback], [type]);
+
+/* remove all bound keys */
+.reset();
+
+/* remove all bound keys and the event listeners of keycharm */
+.destroy();
+
+/* get the key label of the event */
+.getKey(event);
+
+/* bind all keys to this function, could be used for testing or demos. */
+.bindAll(function, 'keydown' or 'keyup');
 ```
 
 Common Pitfalls:
